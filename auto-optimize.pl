@@ -14,7 +14,7 @@ should_optimize(Descriptor) :-
 optimize(Descriptor) :-
     api_optimize:descriptor_optimize(Descriptor),
     resolve_absolute_string_descriptor(Path, Descriptor),
-    json_log_info_formatted("Optimizing ~s", [Path]).
+    json_log_debug_formatted("Optimized ~s", [Path]).
 
 all_descriptor(Descriptor, Descriptor).
 all_descriptor(Descriptor, Parent_Descriptor) :-
