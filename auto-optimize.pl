@@ -47,7 +47,7 @@ plugins:post_commit_hook(Validation_Objects, _Meta_Data) :-
                               optimize_all(Validation_Objects),
                               _,
                               [wait(false)]),
-	      resource_error(threads_in_pool(_)),
+	      resource_error(threads_in_pool(terminusdb_optimizer)),
 	      true
         )
     ;   optimize_all(Validation_Objects)).
