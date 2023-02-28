@@ -43,8 +43,11 @@ thread_pool:create_pool(terminusdb_optimizer) :-
 
 plugins:post_commit_hook(Validation_Objects, _Meta_Data) :-
     (   http_server_property(_, _)
-    ->  thread_create_in_pool(terminusdb_optimizer,
+    ->  catch(thread_create_in_pool(terminusdb_optimizer,
                               optimize_all(Validation_Objects),
                               _,
-                              [wait(false)])
+                              [wait(false)]),
+	      resource_error(threads_in_pool(_)),
+	      true
+        )
     ;   optimize_all(Validation_Objects)).
