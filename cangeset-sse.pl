@@ -185,7 +185,7 @@ sse_send_event_if_authorized(Out, System_DB, Auth, Payload) :-
         catch(
             (
                 format(Out, 'event: changeset~n', []),
-                atom_json_dict(Json_Atom, Payload, []),
+                atom_json_dict(Json_Atom, Payload, [width(0)]),
                 format(Out, 'data: ~w~n~n', [Json_Atom]),
                 flush_output(Out),
                 json_log_info_formatted("SSE Plugin: Sent changeset event for ~q", [Resource])
