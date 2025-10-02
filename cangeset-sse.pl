@@ -16,7 +16,7 @@
 :- catch(
     http_handler(api(changesets/stream),
                  routes:cors_handler(Method, 'plugins/changeset_sse':changeset_sse_handler),
-                 [method(Method), methods([options,get])]),
+                 [method(Method), methods([options,get]), spawn([]), time_limit(infinite)]),
     E,
     json_log_error_formatted("Failed to register SSE handler: ~q", [E])
 ).
